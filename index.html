@@ -1,70 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muskan Garg - Portfolio</title>
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <title>Muskan Garg - Personal Portfolio</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        :root {
-            --primary-bg: #E6F3FA; /* Soft Sky Blue */
-            --secondary-bg: #FFF3E6; /* Creamy Peach */
-            --accent-color: #FF6B6B; /* Coral Pink */
-            --text-dark: #333333; /* Dark Gray */
-            --text-light: #666666; /* Medium Gray */
-            --heading-color: #2D3748; /* Dark Slate */
-            --link-color: #4FD1C5; /* Teal */
-            --link-hover: #38B2AC; /* Darker Teal */
-            --star-color: #FFD700; /* Gold */
-            --transition-speed: 0.3s ease;
-        }
-
+        /* Custom Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap');
+        
         body {
-            font-family: 'Comic Neue', sans-serif;
-            background-color: var(--primary-bg);
-            color: var(--text-dark);
-            line-height: 1.6;
-            position: relative;
-            overflow-x: hidden;
+            font-family: 'Lato', sans-serif;
+            background-color: #0A0A10; /* Deep Space Black */
+            color: #E0E0E0; /* Light Gray for readability */
+            overflow-x: hidden; /* Prevent horizontal scroll due to animations */
         }
 
-        h1, h2, h3 {
-            font-family: 'Chewy', cursive;
-            color: var(--heading-color);
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: #FFD700; /* Gold/Star color for headings */
         }
 
-        .galactic-dust {
-            position: fixed;
+        .bg-solar-gradient {
+            background: linear-gradient(135deg, #0A0A10 0%, #1A0B2C 50%, #0A0A10 100%);
+        }
+
+        .text-cosmic-gold {
+            color: #FFD700;
+        }
+
+        .text-nebula-blue {
+            color: #87CEEB; /* SkyBlue, looks like a nebula */
+        }
+
+        .text-star-silver {
+            color: #A9A9A9;
+        }
+
+        .btn-cosmic {
+            background-color: #6A0DAD; /* Dark Orchid */
+            color: #FFFFFF;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(106, 13, 173, 0.4);
+        }
+
+        .btn-cosmic:hover {
+            background-color: #9370DB; /* Medium Purple */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(106, 13, 173, 0.6);
+        }
+
+        .navbar {
+            background-color: rgba(10, 10, 16, 0.9); /* Slightly transparent dark background */
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .nav-link {
+            color: #E0E0E0 !important;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #FFD700 !important;
+        }
+
+        /* Hero Section Background Animation - Stars */
+        .stars {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            background: radial-gradient(circle at top left, rgba(255, 243, 230, 0.5), transparent 50%),
-                        radial-gradient(circle at bottom right, rgba(255, 107, 107, 0.2), transparent 50%);
-            animation: nebulaFlow 60s infinite alternate ease-in-out;
-        }
-
-        @keyframes nebulaFlow {
-            0% { transform: scale(1) translate(0, 0); }
-            50% { transform: scale(1.1) translate(5%, 5%); }
-            100% { transform: scale(1) translate(0, 0); }
+            background: transparent;
+            z-index: 0;
+            overflow: hidden;
         }
 
         .star {
             position: absolute;
-            background-color: var(--star-color);
+            background: #FFF;
             border-radius: 50%;
-            animation: twinkle 5s infinite alternate;
-            opacity: 0;
+            animation: twinkle linear infinite;
         }
 
         @keyframes twinkle {
@@ -72,385 +97,485 @@
             50% { opacity: 1; transform: scale(1); }
         }
 
-        .navbar {
-            background-color: var(--secondary-bg);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        /* Namaste Animation */
+        #namaste-text span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInRise 0.8s forwards;
         }
 
-        .nav-tabs .nav-link {
-            font-family: 'Chewy', cursive;
-            color: var(--text-dark);
-            border: none;
-            padding: 1rem;
-            transition: color var(--transition-speed);
+        @keyframes fadeInRise {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .nav-tabs .nav-link:hover, .nav-tabs .nav-link.active {
-            color: var(--accent-color);
-            background-color: var(--primary-bg);
-            border-bottom: 3px solid var(--accent-color);
+        /* Section animations */
+        .animated-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
-        .portfolio-card, .art-card, .work-sample-card {
-            background-color: var(--secondary-bg);
-            border: 3px solid var(--accent-color);
-            border-radius: 1rem;
-            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        .animated-section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .portfolio-card:hover, .art-card:hover, .work-sample-card:hover {
+        /* Card styles */
+        .card {
+            background-color: rgba(26, 11, 44, 0.8); /* Dark purple-ish background for cards */
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.2);
         }
 
+        /* Resume Modal (Fancybox like) */
         .modal-content {
-            background-color: var(--secondary-bg);
-            border-radius: 1.5rem;
-            border: 3px solid var(--accent-color);
+            background-color: #1A0B2C; /* Darker purple */
+            border: 1px solid #FFD700;
+            border-radius: 10px;
         }
 
-        .btn-accent {
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            font-family: 'Chewy', cursive;
-            transition: background-color var(--transition-speed), transform var(--transition-speed);
+        .modal-header, .modal-footer {
+            border-bottom: none;
+            border-top: none;
+        }
+        .modal-header .btn-close {
+            filter: invert(1); /* Makes close button white */
+        }
+        .modal-title {
+            color: #FFD700;
         }
 
-        .btn-accent:hover {
-            background-color: var(--link-hover);
-            transform: scale(1.05);
+        /* Custom scrollbar for better aesthetics on dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
 
-        .profile-photo {
-            border: 5px solid var(--accent-color);
-            box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
-            border-radius: 50%;
-            overflow: hidden;
+        ::-webkit-scrollbar-track {
+            background: #0A0A10;
         }
 
-        .tab-content {
-            min-height: calc(100vh - 80px); /* Adjust for navbar height */
-            padding-top: 1rem;
+        ::-webkit-scrollbar-thumb {
+            background: #6A0DAD;
+            border-radius: 4px;
         }
 
-        @media (max-width: 767px) {
-            .nav-tabs {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-            }
-            .nav-link {
-                font-size: 0.9rem;
-                padding: 0.5rem 1rem;
-            }
-            h1 { font-size: 2.2rem; }
-            h2 { font-size: 1.8rem; }
-            .profile-photo { width: 100px; height: 100px; }
-            .tagline-text { font-size: 1rem; }
-            .portfolio-card img, .art-card img, .art-card iframe { height: 120px; }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9370DB;
         }
 
-        @media (max-width: 576px) {
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.5rem; }
-            .nav-link {
-                font-size: 0.8rem;
-                padding: 0.5rem 0.75rem;
-            }
+        /* Social icons */
+        .social-icon {
+            color: #FFD700;
+            transition: transform 0.3s ease;
+        }
+        .social-icon:hover {
+            transform: scale(1.2);
+            color: #87CEEB;
         }
     </style>
 </head>
-<body>
-    <div class="galactic-dust"></div>
+<body class="bg-solar-gradient">
 
-    <!-- Navigation Tabs -->
-    <nav class="navbar fixed-top">
-        <div class="container mx-auto px-4">
-            <a class="navbar-brand fw-bold text-[var(--accent-color)]" href="#">Muskan Garg</a>
-            <ul class="nav nav-tabs d-flex align-items-center ms-auto" id="portfolioTabs" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab">Home</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="about-tab" data-bs-toggle="tab" href="#about" role="tab">About</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="writing-tab" data-bs-toggle="tab" href="#writing" role="tab">Writing</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="fiction-tab" data-bs-toggle="tab" href="#fiction" role="tab">Stories</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="art-tab" data-bs-toggle="tab" href="#art" role="tab">Art</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="resume-tab" data-bs-toggle="tab" href="#resume" role="tab">Resume</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab">Contact</a>
-                </li>
-            </ul>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top py-3">
+        <div class="container">
+            <a class="navbar-brand text-cosmic-gold fw-bold text-lg" href="#home">Muskan Garg</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About Me</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#writing-portfolio">Writing Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#stories-fiction">Stories & Fiction</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#art-creativity">Art & Creativity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#resume-cv">Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
-    <main class="container mx-auto px-4 mt-20">
-        <div class="tab-content">
-            <!-- Home Tab -->
-            <div class="tab-pane fade show active" id="home" role="tabpanel">
-                <div class="text-center py-10">
-                    <div class="profile-photo mx-auto mb-6">
-                        <img src="https://via.placeholder.com/200/FFF3E6/333333?text=Muskan+Garg" alt="Muskan Garg">
-                    </div>
-                    <h1 class="text-4xl mb-4">Muskan Garg</h1>
-                    <p class="tagline-text text-xl text-[var(--text-light)] mb-6" id="tagline-text"></p>
-                    <div class="namaste-container">
-                        <span class="namaste-text text-lg text-[var(--link-color)] hover:text-[var(--accent-color)] transition-colors duration-300">Namaste</span> 👋
-                    </div>
-                </div>
+    <!-- Home Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center text-center p-5 overflow-hidden">
+        <div class="stars"></div> <!-- Starry background animation container -->
+        <div class="relative z-10">
+            <div class="mb-4">
+                <!-- Optional: Professional Photo Placeholder - Replace with your image -->
+                <img src="https://via.placeholder.com/200/6A0DAD/E0E0E0?text=Muskan+Garg" alt="Muskan Garg" class="rounded-full mx-auto shadow-lg border-4 border-cosmic-gold mb-4 animate-pulse">
             </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 animate-fade-in-up">Muskan Garg</h1>
+            <p class="text-xl md:text-2xl text-nebula-blue mb-6">Writer. Thinker. Dreamer.</p>
+            <p id="namaste-text" class="text-lg md:text-xl text-star-silver">Namaste. नमस्ते. Bonjour. Hola. こんにちは. 您好.</p>
+        </div>
+    </section>
 
-            <!-- About Tab -->
-            <div class="tab-pane fade" id="about" role="tabpanel">
-                <div class="text-center py-10">
-                    <h2 class="text-3xl mb-8">About Me</h2>
-                    <p class="max-w-3xl mx-auto mb-4">
-                        Hey there! I'm Muskan Garg, a super creative BA student at Gurugram University. I love spinning stories and diving into history and political science.
-                    </p>
-                    <p class="max-w-3xl mx-auto mb-4">
-                        When I'm not studying, I'm writing cool content, playing the flute, or creating digital art. I'm all about India's awesome heritage and dreaming of acing the UPSC exams to serve the public.
-                    </p>
-                    <p class="max-w-3xl mx-auto">
-                        I also adore animation and finding fun ways to stay productive. Let's chat and share some ideas!
-                    </p>
-                </div>
+    <!-- About Me Section -->
+    <section id="about" class="py-16 md:py-24 container mx-auto px-4 animated-section">
+        <h2 class="text-4xl md:text-5xl text-center mb-12 animate-fade-in">About Me</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <div>
+                <p class="text-lg leading-relaxed mb-4">
+                    Hello! I'm Muskan Garg, a passionate and creative individual currently pursuing my BA at Gurugram University. My world revolves around the power of words – whether it's crafting compelling narratives or diving deep into the nuances of history and political science.
+                </p>
+                <p class="text-lg leading-relaxed mb-4">
+                    Beyond academics, I find immense joy in storytelling and expressing myself through various artistic mediums. I'm a budding musician, finding harmony in the melodies of the flute, and a digital artist who loves bringing imaginative concepts to life. My connection to Indian heritage deeply influences my creative pursuits.
+                </p>
+                <p class="text-lg leading-relaxed">
+                    I'm constantly seeking new challenges and knowledge, driven by my interest in preparing for UPSC exams, exploring the captivating world of animation, and discovering innovative ways to boost creative productivity. Let's connect and create something amazing together!
+                </p>
             </div>
-
-            <!-- Writing Portfolio Tab -->
-            <div class="tab-pane fade" id="writing" role="tabpanel">
-                <div class="py-10">
-                    <h2 class="text-3xl text-center mb-8">Writing Portfolio</h2>
-                    <div class="row g-4">
-                        <div class="col-md-4 col-sm-6">
-                            <div class="portfolio-card p-4">
-                                <img src="https://via.placeholder.com/400x200/FFF3E6/333333?text=Article+1" alt="Article" class="w-100 rounded-3 mb-3">
-                                <h3 class="text-xl">The Geopolitics of Water</h3>
-                                <p class="text-[var(--text-light)]">An analysis of water conflicts in South Asia.</p>
-                                <a href="https://www.linkedin.com/pulse/geopolitics-water-south-asia-muskan-garg-t8i0f/" target="_blank" class="btn btn-accent">Read on LinkedIn <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="portfolio-card p-4">
-                                <img src="https://via.placeholder.com/400x200/FFF3E6/333333?text=Article+2" alt="Article" class="w-100 rounded-3 mb-3">
-                                <h3 class="text-xl">Electoral College</h3>
-                                <p class="text-[var(--text-light)]">Explaining the US Electoral College system.</p>
-                                <a href="https://medium.com/@your_medium_username/decoding-the-electoral-college-a-us-perspective-example" target="_blank" class="btn btn-accent">Read on Medium <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                        <!-- Add more items as needed -->
-                    </div>
-                </div>
+            <div class="text-center">
+                <!-- Replace with your 'About' image -->
+                <img src="https://via.placeholder.com/400/1A0B2C/FFD700?text=About+Muskan" alt="About Muskan" class="rounded-lg shadow-lg max-w-full h-auto mx-auto border border-cosmic-gold transform transition-transform duration-500 hover:scale-105">
             </div>
+        </div>
+    </section>
 
-            <!-- Stories & Fiction Tab -->
-            <div class="tab-pane fade" id="fiction" role="tabpanel">
-                <div class="py-10">
-                    <h2 class="text-3xl text-center mb-8">Stories & Fiction</h2>
-                    <div class="row g-4">
-                        <div class="col-md-6 col-sm-12">
-                            <div class="portfolio-card p-4">
-                                <img src="https://via.placeholder.com/400x250/FFF3E6/333333?text=Temporary+Help" alt="Story" class="w-100 rounded-3 mb-3">
-                                <h3 class="text-xl">Temporary Help</h3>
-                                <p class="text-[var(--text-light)]">A story about unexpected connections.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                            <div class="portfolio-card p-4">
-                                <img src="https://via.placeholder.com/400x250/FFF3E6/333333?text=Hum+Phir+Toh+Milay" alt="Story" class="w-100 rounded-3 mb-3">
-                                <h3 class="text-xl">Hum Phir Toh Milay</h3>
-                                <p class="text-[var(--text-light)]">A tale of serendipitous reunions.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Writing Portfolio Section -->
+    <section id="writing-portfolio" class="py-16 md:py-24 container mx-auto px-4 animated-section">
+        <h2 class="text-4xl md:text-5xl text-center mb-12">Writing Portfolio</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Article 1 - Replace link and content -->
+            <div class="card p-5">
+                <h3 class="text-2xl mb-3 text-nebula-blue">The Art of Storytelling in Digital Age</h3>
+                <p class="text-star-silver mb-4">An insightful piece on how digital platforms have transformed narrative structures and audience engagement.</p>
+                <a href="https://medium.com/@yourmedium/your-article-link-1" target="_blank" class="btn btn-cosmic">Read on Medium <i class="fas fa-external-link-alt ms-2"></i></a>
             </div>
-
-            <!-- Art & Creativity Tab -->
-            <div class="tab-pane fade" id="art" role="tabpanel">
-                <div class="py-10">
-                    <h2 class="text-3xl text-center mb-8">Art & Creativity</h2>
-                    <div class="row g-4">
-                        <div class="col-md-4 col-sm-6">
-                            <div class="art-card">
-                                <img src="https://via.placeholder.com/300x200/FFF3E6/333333?text=Cosmic+Dream" alt="Art" class="w-100 rounded-top-3">
-                                <div class="p-3">
-                                    <h3 class="text-lg">Cosmic Dream</h3>
-                                    <p class="text-[var(--text-light)]">A digital sketch of nebulae.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="art-card">
-                                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-100 rounded-top-3"></iframe>
-                                <div class="p-3">
-                                    <h3 class="text-lg">Serenade for the Stars</h3>
-                                    <p class="text-[var(--text-light)]">A flute performance.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Add more items -->
-                    </div>
-                </div>
+            <!-- Article 2 - Replace link and content -->
+            <div class="card p-5">
+                <h3 class="text-2xl mb-3 text-nebula-blue">Historical Narratives: A New Perspective</h3>
+                <p class="text-star-silver mb-4">Exploring lesser-known facets of historical events and their relevance in contemporary society.</p>
+                <a href="https://www.linkedin.com/pulse/your-linkedin-article-link-2" target="_blank" class="btn btn-cosmic">Read on LinkedIn <i class="fas fa-external-link-alt ms-2"></i></a>
             </div>
-
-            <!-- Resume & Work Samples Tab -->
-            <div class="tab-pane fade" id="resume" role="tabpanel">
-                <div class="py-10">
-                    <h2 class="text-3xl text-center mb-8">Resume & Work Samples</h2>
-                    <div class="text-center mb-8">
-                        <p class="mb-4">My core competencies:</p>
-                        <div class="d-flex flex-wrap justify-content-center gap-2">
-                            <span class="badge bg-[var(--accent-color)] text-white px-3 py-2 rounded-pill">Content Writing</span>
-                            <span class="badge bg-[var(--accent-color)] text-white px-3 py-2 rounded-pill">SEO Basics</span>
-                            <span class="badge bg-[var(--accent-color)] text-white px-3 py-2 rounded-pill">Public Speaking</span>
-                        </div>
-                    </div>
-                    <div class="text-center mb-8">
-                        <a href="assets/Muskan_Garg_Resume.pdf" target="_blank" class="btn btn-accent px-5 py-3" data-pdf-src="assets/Muskan_Garg_Resume.pdf">Download Resume <i class="fas fa-file-pdf"></i></a>
-                    </div>
-                    <div class="row g-4">
-                        <div class="col-md-4 col-sm-6">
-                            <div class="work-sample-card p-4">
-                                <h3 class="text-lg">Ancient Indian Polity</h3>
-                                <p class="text-[var(--text-light)]">Research on ancient Indian kingdoms.</p>
-                                <a href="assets/Sample_Writing_Ancient_Polity.pdf" target="_blank" class="btn btn-accent" data-pdf-src="assets/Sample_Writing_Ancient_Polity.pdf">Download PDF</a>
-                            </div>
-                        </div>
-                        <!-- Add more items -->
-                    </div>
-                </div>
+            <!-- Article 3 - Replace link and content -->
+            <div class="card p-5">
+                <h3 class="text-2xl mb-3 text-nebula-blue">Policy Making and Public Opinion</h3>
+                <p class="text-star-silver mb-4">An analysis of the interplay between government policies and the evolving public sentiment.</p>
+                <a href="https://medium.com/@yourmedium/your-article-link-3" target="_blank" class="btn btn-cosmic">Read on Medium <i class="fas fa-external-link-alt ms-2"></i></a>
             </div>
+            <!-- Article 4 - Replace link and content -->
+            <div class="card p-5">
+                <h3 class="text-2xl mb-3 text-nebula-blue">The Future of Content Creation</h3>
+                <p class="text-star-silver mb-4">A look into emerging trends and technologies shaping the landscape for content writers.</p>
+                <a href="https://medium.com/@yourmedium/your-article-link-4" target="_blank" class="btn btn-cosmic">Read on Medium <i class="fas fa-external-link-alt ms-2"></i></a>
+            </div>
+            <!-- Article 5 - Replace link and content -->
+            <div class="card p-5">
+                <h3 class="text-2xl mb-3 text-nebula-blue">Cultural Heritage and Modern Art</h3>
+                <p class="text-star-silver mb-4">How ancient Indian traditions inspire contemporary digital art and creative expressions.</p>
+                <a href="https://medium.com/@yourmedium/your-article-link-5" target="_blank" class="btn btn-cosmic">Read on Medium <i class="fas fa-external-link-alt ms-2"></i></a>
+            </div>
+            <!-- Article 6 - Replace link and content -->
+            <div class="card p-5">
+                <h3 class="text-2xl mb-3 text-nebula-blue">Understanding Political Ideologies</h3>
+                <p class="text-star-silver mb-4">A concise overview of key political theories and their impact on global governance.</p>
+                <a href="https://medium.com/@yourmedium/your-article-link-6" target="_blank" class="btn btn-cosmic">Read on Medium <i class="fas fa-external-link-alt ms-2"></i></a>
+            </div>
+        </div>
+    </section>
 
-            <!-- Contact Tab -->
-            <div class="tab-pane fade" id="contact" role="tabpanel">
-                <div class="py-10">
-                    <h2 class="text-3xl text-center mb-8">Get in Touch</h2>
-                    <div class="max-w-lg mx-auto p-6 rounded-3xl shadow-lg bg-[var(--secondary-bg)]">
-                        <form action="#" method="POST">
-                            <div class="mb-4">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" id="name" class="form-control rounded-3" required>
-                            </div>
-                            <div class="mb-4">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" id="email" class="form-control rounded-3" required>
-                            </div>
-                            <div class="mb-4">
-                                <label for="subject" class="form-label">Subject</label>
-                                <input type="text" id="subject" class="form-control rounded-3" required>
-                            </div>
-                            <div class="mb-4">
-                                <label for="message" class="form-label">Message</label>
-                                <textarea id="message" class="form-control rounded-3" rows="4" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-accent px-5 py-3">Send Message</button>
-                        </form>
-                        <div class="social-links text-center mt-6">
-                            <a href="https://www.linkedin.com/in/yourprofile" target="_blank" class="text-2xl mx-3 text-[var(--link-color)] hover:text-[var(--accent-color)]"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://medium.com/@yourusername" target="_blank" class="text-2xl mx-3 text-[var(--link-color)] hover:text-[var(--accent-color)]"><i class="fab fa-medium"></i></a>
-                            <a href="https://www.instagram.com/yourprofile" target="_blank" class="text-2xl mx-3 text-[var(--link-color)] hover:text-[var(--accent-color)]"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
+    <!-- Stories & Fiction Section -->
+    <section id="stories-fiction" class="py-16 md:py-24 container mx-auto px-4 animated-section">
+        <h2 class="text-4xl md:text-5xl text-center mb-12">Stories & Fiction</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Story 1 - Replace image and PDF path -->
+            <div class="card p-5 flex flex-col items-center text-center">
+                <img src="https://via.placeholder.com/300x200/1A0B2C/FFD700?text=Temporary+Help+Cover" alt="Temporary Help Cover" class="rounded-lg mb-4 shadow-md max-w-full h-auto transform transition-transform duration-500 hover:scale-105">
+                <h3 class="text-2xl mb-3 text-nebula-blue">Temporary Help</h3>
+                <p class="text-star-silver mb-4">A short story about unexpected connections formed in unusual circumstances, exploring themes of empathy and transient encounters.</p>
+                <a href="#" class="btn btn-cosmic" data-bs-toggle="modal" data-bs-target="#pdfModal" data-pdf-url="path/to/TemporaryHelp.pdf" data-pdf-title="Temporary Help - Full Story">Read Excerpt / Full Story <i class="fas fa-book-open ms-2"></i></a>
+            </div>
+            <!-- Story 2 - Replace image and PDF path -->
+            <div class="card p-5 flex flex-col items-center text-center">
+                <img src="https://via.placeholder.com/300x200/1A0B2C/FFD700?text=Hum+Phir+Toh+Milay+Cover" alt="Hum Phir Toh Milay Cover" class="rounded-lg mb-4 shadow-md max-w-full h-auto transform transition-transform duration-500 hover:scale-105">
+                <h3 class="text-2xl mb-3 text-nebula-blue">Hum Phir Toh Milay (We Met Again)</h3>
+                <p class="text-star-silver mb-4">A poignant tale of destiny, love, and second chances, set against the vibrant backdrop of Indian culture.</p>
+                <a href="#" class="btn btn-cosmic" data-bs-toggle="modal" data-bs-target="#pdfModal" data-pdf-url="path/to/HumPhirTohMilay.pdf" data-pdf-title="Hum Phir Toh Milay - Full Story">Read Excerpt / Full Story <i class="fas fa-book-open ms-2"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Art & Creativity Section -->
+    <section id="art-creativity" class="py-16 md:py-24 container mx-auto px-4 animated-section">
+        <h2 class="text-4xl md:text-5xl text-center mb-12">Art & Creativity</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Digital Sketch 1 - Replace image -->
+            <div class="card p-5 text-center">
+                <img src="https://via.placeholder.com/400x300/1A0B2C/87CEEB?text=Cosmic+Sketch" alt="Cosmic Sketch" class="rounded-lg mb-4 shadow-md max-w-full h-auto transform transition-transform duration-500 hover:scale-105">
+                <h3 class="text-xl mb-2 text-nebula-blue">Cosmic Dreamscape</h3>
+                <p class="text-star-silver text-sm">A digital sketch exploring nebulous forms and cosmic energies.</p>
+            </div>
+            <!-- Digital Sketch 2 - Replace image -->
+            <div class="card p-5 text-center">
+                <img src="https://via.placeholder.com/400x300/1A0B2C/FFD700?text=Flute+Melody+Art" alt="Flute Melody Art" class="rounded-lg mb-4 shadow-md max-w-full h-auto transform transition-transform duration-500 hover:scale-105">
+                <h3 class="text-xl mb-2 text-nebula-blue">Melodies Unbound</h3>
+                <p class="text-star-silver text-sm">Inspired by the ethereal sound of the flute, blending abstract shapes.</p>
+            </div>
+            <!-- Flute Video 1 - Replace YouTube embed src -->
+            <div class="card p-5 text-center">
+                <div class="ratio ratio-16x9 mb-4">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Flute Performance 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="rounded-lg shadow-md"></iframe>
+                </div>
+                <h3 class="text-xl mb-2 text-nebula-blue">Morning Raga</h3>
+                <p class="text-star-silver text-sm">My rendition of a classical Indian morning raga on the flute.</p>
+            </div>
+            <!-- Digital Sketch 3 - Replace image -->
+            <div class="card p-5 text-center">
+                <img src="https://via.placeholder.com/400x300/1A0B2C/A9A9A9?text=Heritage+Inspired+Art" alt="Heritage Inspired Art" class="rounded-lg mb-4 shadow-md max-w-full h-auto transform transition-transform duration-500 hover:scale-105">
+                <h3 class="text-xl mb-2 text-nebula-blue">Echoes of Heritage</h3>
+                <p class="text-star-silver text-sm">A digital painting incorporating elements from traditional Indian art.</p>
+            </div>
+            <!-- Flute Video 2 - Replace YouTube embed src -->
+            <div class="card p-5 text-center">
+                <div class="ratio ratio-16x9 mb-4">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Flute Performance 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="rounded-lg shadow-md"></iframe>
+                </div>
+                <h3 class="text-xl mb-2 text-nebula-blue">Serene Sunset Tune</h3>
+                <p class="text-star-silver text-sm">A relaxing flute piece perfect for a quiet evening.</p>
+            </div>
+            <!-- Digital Sketch 4 - Replace image -->
+            <div class="card p-5 text-center">
+                <img src="https://via.placeholder.com/400x300/1A0B2C/6A0DAD?text=Abstract+Composition" alt="Abstract Composition" class="rounded-lg mb-4 shadow-md max-w-full h-auto transform transition-transform duration-500 hover:scale-105">
+                <h3 class="text-xl mb-2 text-nebula-blue">Abstract Flow</h3>
+                <p class="text-star-silver text-sm">An experimental piece showcasing fluid shapes and vibrant colors.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume/CV Section -->
+    <section id="resume-cv" class="py-16 md:py-24 container mx-auto px-4 animated-section text-center">
+        <h2 class="text-4xl md:text-5xl text-center mb-12">Resume & Skills</h2>
+        <div class="card p-8 mx-auto max-w-3xl">
+            <p class="text-lg mb-6 text-star-silver">
+                Here's a snapshot of my key skills and a link to download my detailed resume. I've also included some additional PDFs showcasing my diverse writing projects.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <span class="badge bg-purple-900 text-cosmic-gold px-4 py-2 rounded-full shadow-md text-md">Content Writing</span>
+                <span class="badge bg-purple-900 text-cosmic-gold px-4 py-2 rounded-full shadow-md text-md">SEO Basics</span>
+                <span class="badge bg-purple-900 text-cosmic-gold px-4 py-2 rounded-full shadow-md text-md">Public Speaking</span>
+                <span class="badge bg-purple-900 text-cosmic-gold px-4 py-2 rounded-full shadow-md text-md">Research</span>
+                <span class="badge bg-purple-900 text-cosmic-gold px-4 py-2 rounded-full shadow-md text-md">Storytelling</span>
+                <span class="badge bg-purple-900 text-cosmic-gold px-4 py-2 rounded-full shadow-md text-md">Digital Art</span>
+            </div>
+            <!-- Replace 'path/to/MuskanGarg_Resume.pdf' with your actual resume PDF path -->
+            <a href="path/to/MuskanGarg_Resume.pdf" download="MuskanGarg_Resume.pdf" class="btn btn-cosmic mb-4 me-3">
+                Download Resume <i class="fas fa-download ms-2"></i>
+            </a>
+            <!-- Button to view resume in modal - Replace PDF path -->
+            <button class="btn btn-cosmic mb-4" data-bs-toggle="modal" data-bs-target="#pdfModal" data-pdf-url="path/to/MuskanGarg_Resume.pdf" data-pdf-title="My Resume">
+                View Resume <i class="fas fa-eye ms-2"></i>
+            </button>
+            <h4 class="text-2xl mt-8 mb-4 text-nebula-blue">Additional Writing Samples (PDFs)</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center">
+                <!-- Replace PDF paths for your writing samples -->
+                <button class="btn btn-outline-light text-nebula-blue border-nebula-blue hover:bg-nebula-blue hover:text-white transition-all duration-300" data-bs-toggle="modal" data-bs-target="#pdfModal" data-pdf-url="path/to/WritingSample_Essay1.pdf" data-pdf-title="Essay on Political Systems">
+                    View Essay: Political Systems
+                </button>
+                <button class="btn btn-outline-light text-nebula-blue border-nebula-blue hover:bg-nebula-blue hover:text-white transition-all duration-300" data-bs-toggle="modal" data-bs-target="#pdfModal" data-pdf-url="path/to/WritingSample_ResearchPaper.pdf" data-pdf-title="Research Paper on Ancient History">
+                    View Research Paper: Ancient History
+                </button>
+                <button class="btn btn-outline-light text-nebula-blue border-nebula-blue hover:bg-nebula-blue hover:text-white transition-all duration-300" data-bs-toggle="modal" data-bs-target="#pdfModal" data-pdf-url="path/to/WritingSample_ShortStory.pdf" data-pdf-title="Short Story: The Whispering Woods">
+                    View Short Story: Whispering Woods
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-24 container mx-auto px-4 animated-section">
+        <h2 class="text-4xl md:text-5xl text-center mb-12">Get in Touch</h2>
+        <div class="card p-8 mx-auto max-w-2xl">
+            <p class="text-lg text-center mb-6 text-star-silver">
+                Have a project in mind or just want to say hello? Fill out the form below or connect with me on social media!
+            </p>
+            <!-- Form Action: This form will not send emails directly from client-side HTML. 
+                 You'll need to integrate a service like Formspree.io, Netlify Forms, or a custom backend.
+                 For now, it's set to '#' which will just refresh the page. -->
+            <form action="#" method="POST" class="space-y-6">
+                <div>
+                    <label for="name" class="block text-md font-medium text-cosmic-gold mb-2">Name</label>
+                    <input type="text" id="name" name="name" class="form-control bg-purple-950 border border-cosmic-gold text-white focus:ring-nebula-blue focus:border-nebula-blue" required>
+                </div>
+                <div>
+                    <label for="email" class="block text-md font-medium text-cosmic-gold mb-2">Email</label>
+                    <input type="email" id="email" name="email" class="form-control bg-purple-950 border border-cosmic-gold text-white focus:ring-nebula-blue focus:border-nebula-blue" required>
+                </div>
+                <div>
+                    <label for="subject" class="block text-md font-medium text-cosmic-gold mb-2">Subject</label>
+                    <input type="text" id="subject" name="subject" class="form-control bg-purple-950 border border-cosmic-gold text-white focus:ring-nebula-blue focus:border-nebula-blue">
+                </div>
+                <div>
+                    <label for="message" class="block text-md font-medium text-cosmic-gold mb-2">Message</label>
+                    <textarea id="message" name="message" rows="5" class="form-control bg-purple-950 border border-cosmic-gold text-white focus:ring-nebula-blue focus:border-nebula-blue" required></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-cosmic w-full md:w-auto">Send Message <i class="fas fa-paper-plane ms-2"></i></button>
+                </div>
+            </form>
+            <div class="text-center mt-8">
+                <h4 class="text-2xl mb-4 text-nebula-blue">Connect with me:</h4>
+                <div class="flex justify-center space-x-6">
+                    <!-- Replace with your actual social media links -->
+                    <a href="https://linkedin.com/in/yourlinkedinprofile" target="_blank" class="social-icon text-4xl"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://medium.com/@yourmediumprofile" target="_blank" class="social-icon text-4xl"><i class="fab fa-medium"></i></a>
+                    <a href="https://instagram.com/yourinstagramprofile" target="_blank" class="social-icon text-4xl"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 
-    <div class="modal fade" id="pdfModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+    <!-- Footer -->
+    <footer class="bg-purple-950 text-center py-6 mt-12 text-star-silver">
+        <p>&copy; <span id="current-year"></span> Muskan Garg. All rights reserved.</p>
+        <p class="text-sm mt-2">Crafted with passion and stardust.</p>
+    </footer>
+
+    <!-- PDF Viewer Modal -->
+    <div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content">
-                <span class="close-button position-absolute top-2 end-3 fs-3 cursor-pointer">×</span>
-                <embed id="pdfViewer" src="" type="application/pdf" class="w-100" style="height: 80vh;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pdfModalLabel">Document Viewer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <iframe id="pdfViewer" src="" frameborder="0" width="100%" height="600px"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-cosmic" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <footer class="bg-[var(--secondary-bg)] py-6 text-center text-[var(--text-light)]">
-        <p>© 2025 Muskan Garg. All rights reserved.</p>
-        <p>Built with Passion & Fun!</p>
-    </footer>
-
-    <!-- Bootstrap JS -->
+    <!-- Bootstrap JS (bundle includes Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
     <script>
-        // Typewriter Effect
-        const taglineTextElement = document.getElementById('tagline-text');
-        const taglines = ["Writer.", "Thinker.", "Dreamer."];
-        let taglineIndex = 0, charIndex = 0, isDeleting = false;
-        function typeWriter() {
-            const currentTagline = taglines[taglineIndex];
-            taglineTextElement.textContent = isDeleting ? currentTagline.substring(0, charIndex - 1) : currentTagline.substring(0, charIndex + 1);
-            charIndex = isDeleting ? charIndex - 1 : charIndex + 1;
-            let typeSpeed = isDeleting ? 60 : 100;
-            if (!isDeleting && charIndex === currentTagline.length) {
-                typeSpeed = 1500;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                taglineIndex = (taglineIndex + 1) % taglines.length;
-                typeSpeed = 500;
-            }
-            setTimeout(typeWriter, typeSpeed);
-        }
-        document.addEventListener('DOMContentLoaded', typeWriter);
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // Namaste Animation
-        const namasteTextElement = document.querySelector('.namaste-text');
-        const namasteGreetings = ["Namaste", "Hello", "Hola", "Bonjour", "Konnichiwa", "Guten Tag", "Olá", "Ni hao"];
-        let currentGreetingIndex = 0;
-        function updateNamasteGreeting() {
-            namasteTextElement.textContent = namasteGreetings[currentGreetingIndex];
-            currentGreetingIndex = (currentGreetingIndex + 1) % namasteGreetings.length;
-        }
-        setInterval(updateNamasteGreeting, 3000);
-
-        // Star Particles
-        const galacticDust = document.querySelector('.galactic-dust');
-        for (let i = 0; i < 100; i++) {
-            const star = document.createElement('div');
-            star.classList.add('star');
-            star.style.width = star.style.height = `${Math.random() * 3 + 1}px`;
-            star.style.left = `${Math.random() * 100}%`;
-            star.style.top = `${Math.random() * 100}%`;
-            star.style.animationDelay = `${Math.random() * 5}s`;
-            star.style.opacity = Math.random();
-            galacticDust.appendChild(star);
-        }
-
-        // PDF Modal
-        const pdfModal = new bootstrap.Modal(document.getElementById('pdfModal'));
-        const pdfViewer = document.getElementById('pdfViewer');
-        const closeButton = document.querySelector('.close-button');
-        function openPdfModal(pdfSrc) {
-            pdfViewer.src = pdfSrc;
-            pdfModal.show();
-        }
-        document.querySelectorAll('[data-pdf-src]').forEach(button => {
-            button.addEventListener('click', function (e) {
-                e.preventDefault();
-                openPdfModal(this.getAttribute('data-pdf-src'));
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
             });
-        });
-        closeButton.addEventListener('click', () => pdfModal.hide());
-        document.getElementById('pdfModal').addEventListener('click', function (e) {
-            if (e.target === this) pdfModal.hide();
-        });
 
-        // Contact Form
-        document.querySelector('#contact form').addEventListener('submit', function (e) {
-            e.preventDefault();
-            alert('Message sent! (Demo only)');
-            this.reset();
+            // "Namaste" Animation
+            const namasteText = document.getElementById('namaste-text');
+            const languages = ["Namaste.", "नमस्ते.", "Bonjour.", "Hola.", "こんにちは.", "您好."];
+            let currentLangIndex = 0;
+
+            function animateNamaste() {
+                namasteText.innerHTML = ''; // Clear previous text
+                const text = languages[currentLangIndex];
+                text.split('').forEach((char, index) => {
+                    const span = document.createElement('span');
+                    span.textContent = char;
+                    span.style.animationDelay = `${index * 0.05}s`; // Stagger animation
+                    namasteText.appendChild(span);
+                });
+                currentLangIndex = (currentLangIndex + 1) % languages.length;
+            }
+
+            // Initial call and then repeat
+            animateNamaste();
+            setInterval(animateNamaste, 4000); // Change text every 4 seconds
+
+            // Starry Background Animation
+            const starsContainer = document.querySelector('.stars');
+            const numStars = 100; // Number of stars
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.width = `${Math.random() * 3 + 1}px`;
+                star.style.height = star.style.width;
+                star.style.animationDuration = `${Math.random() * 3 + 2}s`; // 2-5 seconds
+                star.style.animationDelay = `${Math.random() * 5}s`; // Stagger start times
+                starsContainer.appendChild(star);
+            }
+
+            // Intersection Observer for Section Animations
+            const animatedSections = document.querySelectorAll('.animated-section');
+            const observerOptions = {
+                root: null, // viewport
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of the section is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Optional: Unobserve after animation to prevent re-triggering
+                        // observer.unobserve(entry.target); 
+                    } else {
+                        // Optional: Remove 'visible' class if you want animation to repeat on scroll up
+                        // entry.target.classList.remove('visible'); 
+                    }
+                });
+            }, observerOptions);
+
+            animatedSections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // PDF Modal Functionality
+            const pdfModal = document.getElementById('pdfModal');
+            pdfModal.addEventListener('show.bs.modal', event => {
+                const button = event.relatedTarget; // Button that triggered the modal
+                const pdfUrl = button.getAttribute('data-pdf-url');
+                const pdfTitle = button.getAttribute('data-pdf-title');
+                
+                const pdfViewer = pdfModal.querySelector('#pdfViewer');
+                const modalTitle = pdfModal.querySelector('#pdfModalLabel');
+
+                if (pdfUrl) {
+                    pdfViewer.src = pdfUrl;
+                    modalTitle.textContent = pdfTitle || 'Document Viewer';
+                } else {
+                    pdfViewer.src = ''; // Clear if no URL
+                    modalTitle.textContent = 'Document Viewer';
+                }
+            });
+             pdfModal.addEventListener('hidden.bs.modal', event => {
+                const pdfViewer = pdfModal.querySelector('#pdfViewer');
+                pdfViewer.src = ''; // Clear the iframe src when modal is closed
+            });
         });
     </script>
 </body>
